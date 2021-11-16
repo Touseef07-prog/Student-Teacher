@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+    <div class="row row d-flex justify-content-center" style="margin-top:50px">
+        <h1>Registered Courses</h1>
+        <div class="col-md-12">
+            <div class="content-section">
+                <table class="table">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Course Name</th>
+                            <th scope="col">Teacher</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Students Enrolled</th>
+                            <th scope="col" style="text-align: center">Delete</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for s in st  %}
+                        <tr>
+                            <td>{{s.student_class.class_name}}</td>
+                            <td>{{s.student_class.author.username}}</td>
+                            <td>{{s.student_class.time}}</td>
+                            <td>{{s.student_class.limit}}</td>
+
+                            <td style="text-align:center"> <a class="btn btn-danger btn-sm mt-1 mb-1"
+                                    href="{{ url_for('enrollement_delete', classes_id=s.id) }}">Delete</a>
+                            </td>
+
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div>
+    <div class="row row d-flex justify-content-center" style="margin-top:50px">
+        <h1>All Courses</h1>
+
+        <div class="col-md-12">
+
+            <div class="content-section">
+
+                <table class="table">
+
+
+                    <thead class="thead-dark">
+
+                        <tr>
+                            <th scope="col">Course Name</th>
+                            <th scope="col">Teacher</th>
+                            <th scope="col">Time</th>
+                            <th scope="col">Students Enrolled</th>
+                            <th scope="col" style="text-align: center">Enroll</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for class in classes  %}
+
+
+                        <tr>
+                            <td>{{class.class_name}}</td>
+                            <td>{{class.author.username}}</td>
+                            <td>{{class.time}}</td>
+                            <td>{{class.class_count}}/{{class.limit}}</td>
+
+                            <td style="text-align:center">
+
+                                <form action="{{ url_for('enroll', classes_id=class.id) }}" method="POST"><input
+                                        class="btn btn-secondary btn-sm mt-1 mb-1" value="Enroll" type="submit">
+                                </form>
+
+                            </td>
+
+
+                        </tr>
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+{% endblock content %}

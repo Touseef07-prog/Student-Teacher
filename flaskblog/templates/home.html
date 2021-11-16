@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row row d-flex justify-content-center" style="margin-top:50px">
+    <div class="col-md-12">
+
+        <div class="content-section">
+
+            <table class="table">
+
+
+                <thead class="thead-dark">
+
+                    <tr>
+                        <th scope="col">Course Name</th>
+                        <th scope="col">Teacher</th>
+                        <th scope="col">Time</th>
+                        <th scope="col">Students Enrolled</th>
+                        <th scope="col" style="text-align: center">Edit & Delete</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for c in cl  %}
+                    {% if c.author == current_user %}
+
+
+                    <tr>
+                        <td>
+                            <a href="{{ url_for('course_detail', class_id=c.id) }}">
+                                {{c.class_name}}
+                            </a>
+                        </td>
+                        <td>{{c.author.username}}</td>
+                        <td>{{c.time}}</td>
+                        <td>{{c.limit}}</td>
+
+                        <td style="text-align:center">
+
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1"
+                                href="{{ url_for('course_edit', classes_id=c.id) }}">Edit</a>
+
+                            <a class="btn btn-danger btn-sm mt-1 mb-1"
+                                href="{{ url_for('course_delete', classes_id=c.id) }}">Delete</a>
+
+                        </td>
+
+
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+
+                </tbody>
+            </table>
+
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+{% endblock content %}
